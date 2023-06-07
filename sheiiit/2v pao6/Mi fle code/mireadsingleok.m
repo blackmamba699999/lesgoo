@@ -2,7 +2,7 @@ function [data, header] = mireadsingle(file)
 
 f = fopen (file,'r');
 
-if f == -1
+if f == -1          %if this bad boi is not openable, blank array is the wae.
     data = [];
     header = [];
     return
@@ -10,7 +10,13 @@ end
  
 buf=fread(f, 'uchar=>uint8')';
 
+% The line buf = fread(f, 'uchar=>uint8')'; reads the contents of the opened file (f) using the fread function. The function reads the file as unsigned 8-bit characters ('uchar') and stores them as unsigned 8-bit integers ('uint8'). The resulting data is initially a column
+% vector, but the transposition (') operator is used to convert it into a row vector (').
+
 ind = findstr(buf, 'data');
+
+% The line ind = findstr(buf, 'data'); searches for the substring 'data' within the buf vector using the findstr function. The function returns the starting index of each occurrence of 'data' in the buf vector and stores them in the ind variable.
+
 cut = find(buf(ind:end)==10,1,'first');
 
 c = textscan(char(buf(1:ind+cut-1))', '%14s%s','Delimiter','\n','Whitespace','');
