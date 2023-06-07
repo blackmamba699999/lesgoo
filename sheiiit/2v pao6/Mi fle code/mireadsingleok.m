@@ -19,7 +19,13 @@ ind = findstr(buf, 'data');
 
 cut = find(buf(ind:end)==10,1,'first');
 
+% The code finds the [[[[index]]]] of the first newline character after the occurrence of 'data' in the buf vector using cut = find(buf(ind:end) == 10, 1, 'first'). It searches for the ASCII value 10, which represents the newline character, starting from the ind
+% index within buf. The result is stored in cut.
+
 c = textscan(char(buf(1:ind+cut-1))', '%14s%s','Delimiter','\n','Whitespace','');
+
+% The code uses the textscan function to parse the data and header information from the buf vector. It extracts specific data using c = textscan(char(buf(1:ind+cut-1))', '%14s%s','Delimiter','\n','Whitespace',''). This line reads the data from buf up to the
+% position just before the first occurrence of the newline character after 'data'. It uses the delimiter '\n' to split the data into columns and stores the results in c.
 
 header = makestruct(c);
 
