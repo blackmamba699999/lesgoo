@@ -29,7 +29,11 @@ c = textscan(char(buf(1:ind+cut-1))', '%14s%s','Delimiter','\n','Whitespace','')
 
 header = makestruct(c);
 
+% The function makestruct is called with c as an input argument to convert the parsed data into a structured format. The makestruct function processes the data and returns a header structure (header)
+
 nbufs = size(header.bufferLabel,1)-1;
+
+% The code determines the number of data buffers (nbufs) based on the size of the header.bufferLabel array.
 
 if strcmpi(header.fileType,'Spectroscopy')
     if header.DataPoints == 0
