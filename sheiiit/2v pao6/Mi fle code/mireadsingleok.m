@@ -1,4 +1,4 @@
-function [data, header] = mireadsingle(file)
+function [data, header] = mireadsingleok(file)
 
     f = fopen (file,'r');
 
