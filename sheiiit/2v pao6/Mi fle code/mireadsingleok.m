@@ -15,14 +15,14 @@ buf=fread(f, 'uchar=>uint8')';
 
 ind = findstr(buf, 'data');
 
-% The line ind = findstr(buf, 'data'); searches for the substring 'data' within the buf vector using the findstr function. The function returns the starting index of each occurrence of 'data' in the buf vector and stores them in the ind variable.
+% The line ind = findstr(buf, 'data'); searches for the substring 'data' within the buf vector using the findstr function. The function returns the starting [[[index]]] of each occurrence of 'data' in the buf vector and stores them in the ind variable.
 
 cut = find(buf(ind:end)==10,1,'first');
 
 % The code finds the [[[[index]]]] of the first newline character after the occurrence of 'data' in the buf vector using cut = find(buf(ind:end) == 10, 1, 'first'). It searches for the ASCII value 10, which represents the newline character, starting from the ind
 % index within buf. The result is stored in cut.
 
-c = textscan(char(buf(1:ind+cut-1))', '%14s%s','Delimiter','\n','Whitespace','');
+c = textscan(char(buf(1:ind+cut-1))', '%14s%s','Delimiter','\n','Whitespace','');   % basically ends up avoiding the red question mark thingy of the data. 
 
 % The code uses the textscan function to parse the data and header information from the buf vector. It extracts specific data using c = textscan(char(buf(1:ind+cut-1))', '%14s%s','Delimiter','\n','Whitespace',''). This line reads the data from buf up to the
 % position just before the first occurrence of the newline character after 'data'. It uses the delimiter '\n' to split the data into columns and stores the results in c.
@@ -33,16 +33,18 @@ header = makestruct(c);
 
 nbufs = size(header.bufferLabel,1)-1;
 
-% The code determines the number of data buffers (nbufs) based on the size of the header.bufferLabel array.
+% The code determines the number of data buffers (nbufs) based on the size of the header.bufferLabel array.  ????
+% this thing prolly finds the size of the attribute of 'bufferlabel' thingy in that mi file?
+% yeah, seems like it.
 
-if strcmpi(header.fileType,'Spectroscopy')
+if strcmpi(header.fileType,'Spectroscopy')     %returns 1 when attribute of 'fileType' is spectroscopy (case insensitive)
     if header.DataPoints == 0
         data = zeros(0,3,nbufs);
         return
     end
     
     if strcmpi(header.data, 'BINARY')
-        %data = convchars2float(buf(ind+cut:end));               
+        %data = convchars2float(buf(ind+cut:end));              
         data = convchar(buf(ind+cut:end),'single');
         nd = numel(data);
         
