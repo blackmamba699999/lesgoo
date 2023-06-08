@@ -53,7 +53,7 @@ header = cell(lf,1);
 for k=1:lf    
     ind = find(files{k}==filesep,1,'last');
     waitbar(k/lf, h, ['Lade ',files{k}(ind+1:end),'...']);
-    [data{k}, header{k}] = mireadsingle(files{k});    
+    [data{k}, header{k}] = mireadsingleok(files{k});    
 end
 
 close(h);
