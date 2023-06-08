@@ -1,4 +1,3 @@
-
 function [data, header] = mireadsingle(file)
 
     f = fopen (file,'r');
@@ -154,6 +153,3 @@ function header=makestruct(c)
         end
     end
 end
-
-file1 = 'C:\Users\takla\Documents\github\lesgoo\sheiiit\2v pao6\pao6 ss-cu @2v_00001.mi';
-mireadsingleok(file1);
