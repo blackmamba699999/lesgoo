@@ -37,129 +37,133 @@ function [data, header] = mireadsingleok(file)
 
     nbufs = size(header.bufferLabel,1)-1;
 
+    disp(buf(1: (ind+cut));
+
+    % AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
     % The code determines the number of data buffers (nbufs) based on the size of the header.bufferLabel array.  ????
     % this thing prolly finds the size of the attribute of 'bufferlabel' thingy in that mi file?
     % yeah, seems like it.
 
-    if strcmpi(header.fileType,'Spectroscopy')     %returns 1 when attribute of 'fileType' is spectroscopy (case insensitive)
-        if header.DataPoints == 0
-            data = zeros(0,3,nbufs);
-            return
-        end
+    % if strcmpi(header.fileType,'Spectroscopy')     %returns 1 when attribute of 'fileType' is spectroscopy (case insensitive)
+    %     if header.DataPoints == 0
+    %         data = zeros(0,3,nbufs);
+    %         return
+    %     end
         
-        if strcmpi(header.data, 'BINARY')
-            %data = convchars2float(buf(ind+cut:end));              
-            data = convchar(buf(ind+cut:end),'single');
-            nd = numel(data);
+    %     if strcmpi(header.data, 'BINARY')
+    %         %data = convchars2float(buf(ind+cut:end));              
+    %         data = convchar(buf(ind+cut:end),'single');
+    %         nd = numel(data);
             
-            pts=[0;header.chunk(:,2)];
-            cpts=cumsum(pts);
+    %         pts=[0;header.chunk(:,2)];
+    %         cpts=cumsum(pts);
             
-            if nd ~= cpts(end) || nd~= header.DataPoints
-                data = nan;
-                header = nan;
-            end
+    %         if nd ~= cpts(end) || nd~= header.DataPoints
+    %             data = nan;
+    %             header = nan;
+    %         end
 
-            t=zeros(cpts(end),1);
-            x=t;
+    %         t=zeros(cpts(end),1);
+    %         x=t;
             
-            for k=1:length(pts) - 1 
-                ind = cpts(k) + (1:pts(k+1));
-                t(ind) = header.chunk(k,3) + (0:header.chunk(k,2)-1)*header.chunk(k,4);
-                x(ind) = header.chunk(k,5) + (0:header.chunk(k,2)-1)*header.chunk(k,6);
-            end
+    %         for k=1:length(pts) - 1 
+    %             ind = cpts(k) + (1:pts(k+1));
+    %             t(ind) = header.chunk(k,3) + (0:header.chunk(k,2)-1)*header.chunk(k,4);
+    %             x(ind) = header.chunk(k,5) + (0:header.chunk(k,2)-1)*header.chunk(k,6);
+    %         end
             
-            data = reshape (data, [nd/nbufs, 1, nbufs]);
-            data = cat(2, repmat(x, [1, 1, nbufs]), data, repmat(t, [1,1,nbufs]));        
-        elseif strcmpi(header.data, 'ASCII')
-            c = textscan(char(buf(ind+cut:end))','%n%n%n');
-            t = reshape(c{1}, [numel(c{1})/nbufs, 1, nbufs]);
-            x = reshape(c{2}, [numel(c{2})/nbufs, 1, nbufs]);
-            data = reshape(c{3}, [numel(c{3})/nbufs, 1, nbufs]);
-            data = cat(2, x, data, t);
-        else
-            data = nan;
-            header = nan;
-            return
-        end    
+    %         data = reshape (data, [nd/nbufs, 1, nbufs]);
+    %         data = cat(2, repmat(x, [1, 1, nbufs]), data, repmat(t, [1,1,nbufs]));        
+    %     elseif strcmpi(header.data, 'ASCII')
+    %         c = textscan(char(buf(ind+cut:end))','%n%n%n');
+    %         t = reshape(c{1}, [numel(c{1})/nbufs, 1, nbufs]);
+    %         x = reshape(c{2}, [numel(c{2})/nbufs, 1, nbufs]);
+    %         data = reshape(c{3}, [numel(c{3})/nbufs, 1, nbufs]);
+    %         data = cat(2, x, data, t);
+    %     else
+    %         data = nan;
+    %         header = nan;
+    %         return
+    %     end    
 
-    % --------------------------------------------IMPSHIT----------------------------------------------------
+    % % --------------------------------------------IMPSHIT----------------------------------------------------
 
-    elseif strcmpi(header.fileType,'Image') % now this thing is of our interest.  if attribute of 'filetype' is image, then it proceeds this way. 
+    % elseif strcmpi(header.fileType,'Image') % now this thing is of our interest.  if attribute of 'filetype' is image, then it proceeds this way. 
 
-        if strcmpi(header.data,'BINARY')  % of course, in the files it is BINARY_32, so this is prolly the thingy
-                                        % that we will have to change. or just add another elseif clause with the same things.
+    %     if strcmpi(header.data,'BINARY')  % of course, in the files it is BINARY_32, so this is prolly the thingy
+    %                                     % that we will have to change. or just add another elseif clause with the same things.
 
-                                        % this is boutta get real spicy.
-
-
-            % data = convchars2int32(buf(ind+cut:end));
-
-            data = binaryToInt16(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
-
-        elseif strcmpi(header.data,'BINARY_32')  
+    %                                     % this is boutta get real spicy.
 
 
-            % data = convchars2int32(buf(ind+cut:end));
+    %         % data = convchars2int32(buf(ind+cut:end));
 
-            data = binaryToInt16(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+    %         data = binaryToInt16(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+
+    %     elseif strcmpi(header.data,'BINARY_32')  
+
+
+    %         % data = convchars2int32(buf(ind+cut:end));
+
+    %         data = binaryToInt16(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
         
-        elseif strcmpi(header.data,'ASCII')   % If header.data is 'ASCII', the ASCII data is parsed using textscan to obtain the image data.
-            data = textscan (char(buf(ind+cut:end))','%n');
-            data = data{1};
+    %     elseif strcmpi(header.data,'ASCII')   % If header.data is 'ASCII', the ASCII data is parsed using textscan to obtain the image data.
+    %         data = textscan (char(buf(ind+cut:end))','%n');
+    %         data = data{1};
 
-        else
-            data = nan;
-            header = nan;
-            return;
-        end
+    %     else
+    %         data = nan;
+    %         header = nan;
+    %         return;
+    %     end
         
-        data = reshape(data, header.xPixels, header.yPixels, []);
-        data = permute (data, [2 1 3]);
-        data = data(end:-1:1,:,:);
+    %     data = reshape(data, header.xPixels, header.yPixels, []);
+    %     data = permute (data, [2 1 3]);
+    %     data = data(end:-1:1,:,:);
 
 
 
 
 
-        % if strcmpi(header.data,'BINARY')  % of course, in the files it is BINARY_32, so this is prolly the thingy
-        %     % that we will have to change. or just add another elseif clause with the same things.
+    %     % if strcmpi(header.data,'BINARY')  % of course, in the files it is BINARY_32, so this is prolly the thingy
+    %     %     % that we will have to change. or just add another elseif clause with the same things.
 
-        %     % this is boutta get real spicy.
-
-
-        % % data = convchars2int32(buf(ind+cut:end));
-
-        % data = convchar(buf(ind+cut:end), 'int16');  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
-
-        % elseif strcmpi(header.data,'BINARY_32')  
+    %     %     % this is boutta get real spicy.
 
 
-        % % data = convchars2int32(buf(ind+cut:end));
+    %     % % data = convchars2int32(buf(ind+cut:end));
 
-        % data = convchar(buf(ind+cut:end), 'int16');  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+    %     % data = convchar(buf(ind+cut:end), 'int16');  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
 
-        % elseif strcmpi(header.data,'ASCII')   % If header.data is 'ASCII', the ASCII data is parsed using textscan to obtain the image data.
-        % data = textscan (char(buf(ind+cut:end))','%n');
-        % data = data{1};
-
-        % else
-        % data = nan;
-        % header = nan;
-        % return;
-        % end
-
-        % data = reshape(data, header.xPixels, header.yPixels, []);
-        % data = permute (data, [2 1 3]);
-        % data = data(end:-1:1,:,:);
-
-    % --------------------------------------------IMPSHIT----------------------------------------------------
+    %     % elseif strcmpi(header.data,'BINARY_32')  
 
 
-    end
+    %     % % data = convchars2int32(buf(ind+cut:end));
+
+    %     % data = convchar(buf(ind+cut:end), 'int16');  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+
+    %     % elseif strcmpi(header.data,'ASCII')   % If header.data is 'ASCII', the ASCII data is parsed using textscan to obtain the image data.
+    %     % data = textscan (char(buf(ind+cut:end))','%n');
+    %     % data = data{1};
+
+    %     % else
+    %     % data = nan;
+    %     % header = nan;
+    %     % return;
+    %     % end
+
+    %     % data = reshape(data, header.xPixels, header.yPixels, []);
+    %     % data = permute (data, [2 1 3]);
+    %     % data = data(end:-1:1,:,:);
+
+    % % --------------------------------------------IMPSHIT----------------------------------------------------
 
 
-    fclose(f);
+    % end
+
+
+    % fclose(f);
     
 
 end
