@@ -95,14 +95,14 @@ function [data, header] = mireadsingleok(file)
 
             % data = convchars2int32(buf(ind+cut:end));
 
-            data = str2num(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+            data = binaryToInt16(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
 
         elseif strcmpi(header.data,'BINARY_32')  
 
 
             % data = convchars2int32(buf(ind+cut:end));
 
-            data = str2num(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+            data = binaryToInt16(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
         
         elseif strcmpi(header.data,'ASCII')   % If header.data is 'ASCII', the ASCII data is parsed using textscan to obtain the image data.
             data = textscan (char(buf(ind+cut:end))','%n');
