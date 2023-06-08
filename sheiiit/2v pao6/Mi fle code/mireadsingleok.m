@@ -37,7 +37,7 @@ function [data, header] = mireadsingleok(file)
 
     nbufs = size(header.bufferLabel,1)-1;
 
-    disp(buf(1:(ind+cut)));
+    disp(buf(1: (ind+cut)));
 
     % AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
