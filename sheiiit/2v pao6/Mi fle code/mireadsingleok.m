@@ -29,6 +29,7 @@ c = textscan(char(buf(1:ind+cut-1))', '%14s%s','Delimiter','\n','Whitespace','')
 
 header = makestruct(c);
 
+% yeah the function definition is at the end. why must you.
 % The function makestruct is called with c as an input argument to convert the parsed data into a structured format. The makestruct function processes the data and returns a header structure (header)
 
 nbufs = size(header.bufferLabel,1)-1;
@@ -78,10 +79,21 @@ if strcmpi(header.fileType,'Spectroscopy')     %returns 1 when attribute of 'fil
         header = nan;
         return
     end    
-elseif strcmpi(header.fileType,'Image')
-    if strcmpi(header.data,'BINARY')
+
+
+
+elseif strcmpi(header.fileType,'Image'). % now this thing is of our interest.  if attribute of 'filetype' is image, then it proceeds this way. 
+
+    if strcmpi(header.data,'BINARY')  % of course, in the files it is BINARY_32, so this is prolly the thingy
+                                      % that we will have to change. or just add another elseif clause with the same things.
+
+                                      % this is boutta get real spicy.
+
+
         % data = convchars2int32(buf(ind+cut:end));
-        data = convchar(buf(ind+cut:end), 'int16');
+
+        data = convchar(buf(ind+cut:end), 'int16');  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+
     elseif strcmpi(header.data,'ASCII')
         data = textscan (char(buf(ind+cut:end))','%n');
         data = data{1};
