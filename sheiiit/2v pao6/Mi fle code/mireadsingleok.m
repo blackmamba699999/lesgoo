@@ -41,9 +41,9 @@ function [data, header] = mireadsingleok(file)
 
     % AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
-    The code determines the number of data buffers (nbufs) based on the size of the header.bufferLabel array.  ????
-    this thing prolly finds the size of the attribute of 'bufferlabel' thingy in that mi file?
-    yeah, seems like it.
+    % The code determines the number of data buffers (nbufs) based on the size of the header.bufferLabel array.  ????
+    % this thing prolly finds the size of the attribute of 'bufferlabel' thingy in that mi file?
+    % yeah, seems like it.
 
     if strcmpi(header.fileType,'Spectroscopy')     %returns 1 when attribute of 'fileType' is spectroscopy (case insensitive)
         if header.DataPoints == 0
