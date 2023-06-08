@@ -95,14 +95,14 @@ function [data, header] = mireadsingleok(file)
 
             % data = convchars2int32(buf(ind+cut:end));
 
-            data = convchar(buf(ind+cut:end), 'int16');  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+            data = str2num(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
 
         elseif strcmpi(header.data,'BINARY_32')  
 
 
             % data = convchars2int32(buf(ind+cut:end));
 
-            data = convchar(buf(ind+cut:end), 'int16');  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+            data = str2num(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
         
         elseif strcmpi(header.data,'ASCII')   % If header.data is 'ASCII', the ASCII data is parsed using textscan to obtain the image data.
             data = textscan (char(buf(ind+cut:end))','%n');
@@ -117,6 +117,41 @@ function [data, header] = mireadsingleok(file)
         data = reshape(data, header.xPixels, header.yPixels, []);
         data = permute (data, [2 1 3]);
         data = data(end:-1:1,:,:);
+
+
+
+
+
+        % if strcmpi(header.data,'BINARY')  % of course, in the files it is BINARY_32, so this is prolly the thingy
+        %     % that we will have to change. or just add another elseif clause with the same things.
+
+        %     % this is boutta get real spicy.
+
+
+        % % data = convchars2int32(buf(ind+cut:end));
+
+        % data = convchar(buf(ind+cut:end), 'int16');  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+
+        % elseif strcmpi(header.data,'BINARY_32')  
+
+
+        % % data = convchars2int32(buf(ind+cut:end));
+
+        % data = convchar(buf(ind+cut:end), 'int16');  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+
+        % elseif strcmpi(header.data,'ASCII')   % If header.data is 'ASCII', the ASCII data is parsed using textscan to obtain the image data.
+        % data = textscan (char(buf(ind+cut:end))','%n');
+        % data = data{1};
+
+        % else
+        % data = nan;
+        % header = nan;
+        % return;
+        % end
+
+        % data = reshape(data, header.xPixels, header.yPixels, []);
+        % data = permute (data, [2 1 3]);
+        % data = data(end:-1:1,:,:);
 
     % --------------------------------------------IMPSHIT----------------------------------------------------
 
