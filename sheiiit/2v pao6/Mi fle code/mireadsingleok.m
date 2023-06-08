@@ -1,3 +1,4 @@
+
 function [data, header] = mireadsingle(file)
 
 f = fopen (file,'r');
@@ -142,9 +143,13 @@ for k=1:length(c{1})
         header.(field)=tmp;
     else
         if ischar(tmp)
-            header.(field)=strvcat(header.(field), tmp); %#ok<VCAT>
+            header.(field)=strvcat(header.(field), tmp); 
         else
             header.(field)=cat(1, header.(field), tmp);
         end
     end
 end
+
+
+file1 = 'C:\Users\takla\Documents\github\lesgoo\sheiiit\2v pao6\pao6 ss-cu @2v_00001.mi';
+mireadsingleok(file1);
