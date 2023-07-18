@@ -1,0 +1,10 @@
+/COM,ANSYS RELEASE 2022 R2           BUILD 22.2      UP20220516       11:42:57
+
+ *** WARNING ***                         CP =       0.766   TIME= 11:42:58
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =       1.000   TIME= 11:42:58
+ All selected contact pairs are initially open.  Rigid body motion can   
+ occur.  You may use auto CNOF/ICONT by setting KEYOPT(5) to close       
+ small gaps.                                                             

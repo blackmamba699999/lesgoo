@@ -1,0 +1,76 @@
+/COM,ANSYS RELEASE 2022 R2           BUILD 22.2      UP20220516       12:54:53
+
+ *** WARNING ***                         CP =       3.141   TIME= 12:54:55
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =       7.297   TIME= 12:54:57
+ The first term of constraint equation number 4 refers to degree of      
+ freedom ROTX at node 1.  This degree of freedom is not active, so       
+ therefore, this constraint equation is ignored.                         
+
+ *** WARNING ***                         CP =       7.297   TIME= 12:54:57
+ The first term of constraint equation number 5 refers to degree of      
+ freedom ROTY at node 1.  This degree of freedom is not active, so       
+ therefore, this constraint equation is ignored.                         
+
+ *** WARNING ***                         CP =       7.297   TIME= 12:54:57
+ The first term of constraint equation number 6 refers to degree of      
+ freedom ROTZ at node 1.  This degree of freedom is not active, so       
+ therefore, this constraint equation is ignored.                         
+
+ *** WARNING ***                         CP =      32.156   TIME= 12:55:21
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =     117.172   TIME= 12:56:46
+ A reference force value times the tolerance is used by the              
+ Newton-Raphson method for checking convergence.  The calculated         
+ reference FORCE CONVERGENCE VALUE = 2.530468207E-05 is less than a      
+ threshold.  This threshold is internally calculated.  You can           
+ overwrite it by specifying MINREF on the CNVTOL command.  Check         
+ results carefully.                                                      
+
+ *** WARNING ***                         CP =     118.844   TIME= 12:56:47
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =     204.234   TIME= 12:58:12
+ A reference force value times the tolerance is used by the              
+ Newton-Raphson method for checking convergence.  The calculated         
+ reference FORCE CONVERGENCE VALUE = 7.513420615E-05 is less than a      
+ threshold.  This threshold is internally calculated.  You can           
+ overwrite it by specifying MINREF on the CNVTOL command.  Check         
+ results carefully.                                                      
+
+ *** WARNING ***                         CP =     205.969   TIME= 12:58:14
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =     223.672   TIME= 12:58:31
+ Contact element 9546 (real ID 3) status changes abruptly from           
+ no-contact -> contact (with target element 10698).                      
+
+ *** WARNING ***                         CP =     336.719   TIME= 13:00:24
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =     534.422   TIME= 13:03:41
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =     604.141   TIME= 13:04:49
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =     719.766   TIME= 13:06:44
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =     805.531   TIME= 13:08:09
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =     930.141   TIME= 13:10:13
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
