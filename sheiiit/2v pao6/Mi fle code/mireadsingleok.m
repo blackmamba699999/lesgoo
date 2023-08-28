@@ -37,7 +37,8 @@ function [data, header] = mireadsingleok(file)
 
     nbufs = size(header.bufferLabel,1)-1;
 
-    disp(buf(1: (ind+cut)));
+    disp(buf((ind+cut):end));
+    %disp (ind+cut);
 
     % AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
@@ -99,14 +100,14 @@ function [data, header] = mireadsingleok(file)
 
             % data = convchars2int32(buf(ind+cut:end));
 
-            data = binaryToInt16(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+            data = binaryToInt16(buf(ind+cut:end)');  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
 
         elseif strcmpi(header.data,'BINARY_32')  
 
 
             % data = convchars2int32(buf(ind+cut:end));
 
-            data = binaryToInt16(buf(ind+cut:end));  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
+            data = binaryToInt16(buf(ind+cut:end)');  %converts all the binary shit at the end to int16 datatype (signed 16bit integer)
         
         elseif strcmpi(header.data,'ASCII')   % If header.data is 'ASCII', the ASCII data is parsed using textscan to obtain the image data.
             data = textscan (char(buf(ind+cut:end))','%n');
