@@ -1,3 +1,3 @@
-okay you might be wondering where are the files for the slow tests. the folder was too thicc to be uploaded via github browser so here it is:
-
-https://drive.google.com/drive/folders/1G7hhXIpSsSQtAuZRc7l7Uxgv_IoMtkAZ?usp=sharing
+version https://git-lfs.github.com/spec/v1
+oid sha256:f4f7a3156b63fd2584a4eec29e9106441b8204d221123f57c0796c4f7a7f4356
+size 229
